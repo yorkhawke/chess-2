@@ -1,0 +1,56 @@
+	
+	Sprite sprite;
+	sprite.setTexture(tex);
+	sprite.setTextureRect(IntRect(480, 0, 80, 80));
+	Square squares[64];
+	bool o = false;
+	bool rowchange = false;
+	for (int i = 0; i < 64; i++)
+	{
+		if (i % 2 == 0)
+		{
+			if (i == 0)
+				o = false;
+			else if (i < 8 && i > 0 || i < 24 && i>15 || i < 40 && i > 31 || i < 56 && i > 47)
+				o = false;
+			else
+				o = true;
+
+		}
+		else
+		{
+			if (i < 8 && i>0 || i < 24 && i>15 || i < 40 && i>31 || i < 56 && i > 47)
+				o = true;
+			else
+				o = false;
+		}
+		squares[i] = Square(pos, sprite, o);
+		if (pos.x < 560)
+		{
+			pos.x += 80;
+		}
+		else
+		{
+			pos.x = 0;
+			pos.y += 80;
+		}
+	}
+	
+		Piece* piece[16]=
+	{ {new Pawn(Vector2f(0,480),false,sprite,Color::White)},
+	{ new Pawn(Vector2f(80, 480), false, sprite, Color::White) },
+	{  new Pawn(Vector2f(160, 480), false, sprite, Color::White) },
+	{ new Pawn(Vector2f(240, 480), false, sprite, Color::White) },
+	{ new Pawn(Vector2f(320, 480), false, sprite, Color::White) },
+	{ new Pawn(Vector2f(400, 480), false, sprite, Color::White) },
+	{ new Pawn(Vector2f(480, 480), false, sprite, Color::White) },
+	{ new Pawn(Vector2f(560, 480), false, sprite, Color::White) },
+	{ new Rook(Vector2f(0,560),false,sprite,Color::White)},
+	{ new Rook(Vector2f(560, 560), false, sprite, Color::White) },
+	{ new Knight(Vector2f(80, 560), false, sprite, Color::White) },
+	{ new Knight(Vector2f(480, 560), false, sprite, Color::White) },
+	{ new Bishop(Vector2f(160, 560), false, sprite, Color::White) },
+	{ new Bishop(Vector2f(400, 560), false, sprite, Color::White) },
+	{ new King(Vector2f(240, 560), false, sprite, Color::White) },
+	{ new Queen(Vector2f(320, 560), false, sprite, Color::White) }
+	};
