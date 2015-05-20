@@ -3,14 +3,21 @@
 #include <SFML\Graphics.hpp>
 #include "Match.h"
 
+
+
 class Graphic
 {
-private:
-
+protected:
+	int SCRWIDTH;
+	int SCRHEIGHT;
 public:
 	Graphic();
-	~Graphic();
-	virtual void Draw(Match& match)=0;//Eller vad vi nu behöver ha?!
+	Graphic(int,int);
+	virtual ~Graphic();
+	virtual void Draw() = 0;
+	virtual void Render(RenderWindow* window) = 0;
+	virtual FloatRect GetGlobalRec(int nr) = 0;
+
 };
 
 #endif
