@@ -114,4 +114,58 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="BackC.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Close.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Pieces2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Play.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libsndfile-1.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="openal32.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sfml-audio-d-2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sfml-graphics-2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sfml-graphics-d-2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sfml-network-2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sfml-network-d-2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sfml-system-2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sfml-system-d-2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sfml-window-2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sfml-window-d-2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="OptimusPrinceps.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
+  </ItemGroup>
 </Project>

@@ -116,6 +116,28 @@
     <ClInclude Include="Rook.h" />
     <ClInclude Include="Square.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="BackC.png" />
+    <Image Include="Close.png" />
+    <Image Include="Pieces2.png" />
+    <Image Include="Play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libsndfile-1.dll" />
+    <None Include="openal32.dll" />
+    <None Include="sfml-audio-d-2.dll" />
+    <None Include="sfml-graphics-2.dll" />
+    <None Include="sfml-graphics-d-2.dll" />
+    <None Include="sfml-network-2.dll" />
+    <None Include="sfml-network-d-2.dll" />
+    <None Include="sfml-system-2.dll" />
+    <None Include="sfml-system-d-2.dll" />
+    <None Include="sfml-window-2.dll" />
+    <None Include="sfml-window-d-2.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="OptimusPrinceps.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

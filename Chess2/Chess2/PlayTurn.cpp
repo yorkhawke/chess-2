@@ -10,7 +10,7 @@ PlayTurn::~PlayTurn()
 
 }
 
-void PlayTurn::Turn(Piece* PiecesP1[16], Piece* PiecesP2[], RenderWindow* win)
+void PlayTurn::Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win)
 {
 	Vector2f previouspos;
 	switch (inp.InputMove(win,targeted))
@@ -104,7 +104,6 @@ bool PlayTurn::checkMove(Piece* PiecesP2[], Piece* PiecesP1[], Vector2f newPos, 
 			{
 				Position.x = (float)(x * 80);
 				Position.y = (float)(y * 80);
-				sprite.setPosition(Position);//set sprite position;
 			}
 			break;
 		case 1:
