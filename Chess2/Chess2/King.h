@@ -12,7 +12,7 @@ private:
 public:
 	King(Vector2f, bool, Sprite, Color);
 	~King();
-	Vector2f Move(Vector2f);
+	bool Move(Vector2f);
 	bool GetIsChecked();
 };
 #endif

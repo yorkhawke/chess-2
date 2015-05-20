@@ -18,7 +18,7 @@ Pawn::Pawn(Vector2f pos, bool s, Sprite sp, Color c) :Piece(pos,s,sp,c)
 	kind = 5;
 }
 
-Vector2f Pawn::Move(Vector2f pos)
+bool Pawn::Move(Vector2f pos)
 {
 	if (pos.x < 641 && pos.y<641)//check to make sure the piece cant move outside the board
 	{
@@ -30,21 +30,14 @@ Vector2f Pawn::Move(Vector2f pos)
 			{
 				if ((abs((int)Position.y - y * 80) <= 160) || (abs((int)Position.y - y * 80) <= 80))
 				{
-					Position.x = (float)(x * 80);
-					Position.y = (float)(y * 80);
-					sprite.setPosition(Position);
-					firstmove = false;
-					return Position;
+					return true;
 				}
 			}
 			if (abs((int)Position.y - y * 80) <= 80)//if its not the first move the piece can move one step forward/diagonaly forward(1 step forward and one to the side)
 			{
-				Position.x = (float)(x * 80);
-				Position.y = (float)(y * 80);
-				sprite.setPosition(Position);
-				return Position;
+				return true;
 			}
 		}
 	}
-	return  Position;
+	return false;
 }

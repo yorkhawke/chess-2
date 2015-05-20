@@ -17,7 +17,7 @@ Knight::Knight(Vector2f pos, bool s, Sprite sp, Color c) :Piece(pos, s, sp, c)
 	kind = 3;
 }
 
-Vector2f Knight::Move(Vector2f pos)
+bool Knight::Move(Vector2f pos)
 {
 	if (pos.x < 641 && pos.y<651)//check to make sure piece dont move outside the board
 	{
@@ -25,10 +25,8 @@ Vector2f Knight::Move(Vector2f pos)
 		int y = (int)(pos.y / 80);
 		if (abs((int)Position.x - x * 80) == 160 && abs((int)Position.y - y * 80) == 80 || abs((int)Position.x - x * 80) == 80 && abs((int)Position.y - y * 80) == 160)//check if the move is a valid move
 		{
-			Position.x = (float)(x * 80);
-			Position.y = (float)(y * 80);
-			sprite.setPosition(Position);
+			return true;
 		}
 	}
-	return  Position;
+	return  false;
 }

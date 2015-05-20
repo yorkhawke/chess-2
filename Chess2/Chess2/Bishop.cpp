@@ -17,7 +17,7 @@ Bishop::Bishop(Vector2f pos, bool s, Sprite sp, Color c) :Piece(pos, s, sp, c)
 	kind = 2;
 }
 
-Vector2f Bishop::Move(Vector2f pos)//used to move the piece
+bool Bishop::Move(Vector2f pos)//used to move the piece
 {
 	if (pos.x < 641 && pos.y<651)//makes sure the piece cant move outside the board
 	{
@@ -25,10 +25,8 @@ Vector2f Bishop::Move(Vector2f pos)//used to move the piece
 		int y = (int)(pos.y / 80);
 		if (abs((int)Position.y - y * 80) == abs((int)Position.x - x * 80))//calculates if the new position is a position the piece could move to
 		{
-			Position.x = (float)(x * 80);
-			Position.y = (float)(y * 80);
-			sprite.setPosition(Position);
+			return true;
 		}
 	}
-	return  Position;
+	return  false;
 }

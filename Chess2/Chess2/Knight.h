@@ -10,7 +10,7 @@ private:
 public:
 	~Knight();
 	Knight(Vector2f, bool, Sprite, Color);
-	Vector2f Move(Vector2f);
+	bool Move(Vector2f);
 };
 
 #endif
