@@ -26,7 +26,7 @@ public:
 	void SetTexture(Sprite);
 	Color GetColour();
 	void SetColour(Color);
-	virtual Vector2f Move(Vector2f)=0;
+	virtual bool Move(Vector2f)=0;
 	bool GetTargeted();
 	void SetTargeted(bool);
 	int getKind();

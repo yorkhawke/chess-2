@@ -10,7 +10,7 @@ private:
 public:
 	Bishop(Vector2f, bool, Sprite, Color);
 	~Bishop();
-	Vector2f Move(Vector2f);
+	bool Move(Vector2f);
 };
 
 
