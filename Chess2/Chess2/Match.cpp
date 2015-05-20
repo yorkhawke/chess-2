@@ -22,11 +22,11 @@ void Match::PlayMatch(RenderWindow* win)
 	mGrap->Draw();
 
 	//Creating players
-	Player p1(1, 0, "Player 1", false, Sp1);
-	Player p2(2, 0, "Player 2", false, Sp2);
+	//Player p1(1, 0, "Player 1", false);
+	//Player p2(2, 0, "Player 2", false);
 
-	p1.ResetPieces(true);
-	p2.ResetPieces(false);
+	//p1.ResetPieces(true);
+	//p2.ResetPieces(false);
 
 	Event ev;
 	bool turn=true;

@@ -13,13 +13,15 @@ PlayTurn::~PlayTurn()
 void PlayTurn::Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win)
 {
 	Vector2f previouspos;
+	Vector2i mousePosition = sf::Mouse::getPosition(*win);
+	Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
+
+	int x = (int)mousePositionFloat.x / 80;
+	int y = (int)mousePositionFloat.y / 80;
+
 	switch (inp.InputMove(win,targeted))
 	{
 	case 1://TARGETING
-			Vector2i mousePosition = sf::Mouse::getPosition(*win);
-			Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
-			int x = (int)mousePositionFloat.x / 80;
-			int y = (int)mousePositionFloat.y / 80;
 			for (int i = 0; i < 16; i++)
 			{
 				previouspos = PiecesP1[i]->GetPosition();
@@ -31,14 +33,7 @@ void PlayTurn::Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win)
 				}
 			}
 			break;
-	case 2://Neccesary?
-
-		break;
 	case 3://trimma 
-		Vector2i mousePosition = sf::Mouse::getPosition(*win);
-		Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
-		int x = (int)mousePositionFloat.x / 80;
-		int y = (int)mousePositionFloat.y / 80;
 		for (int i = 0; i < 16; i++)
 		{
 			previouspos = PiecesP1[i]->GetPosition();
@@ -51,11 +46,6 @@ void PlayTurn::Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win)
 		}
 		break;
 	case 4:
-		Vector2i mousePosition = sf::Mouse::getPosition(*win);
-		int x = (int)mousePositionFloat.x / 80;
-		int y = (int)mousePositionFloat.y / 80;
-		Vector2i mousePosition = sf::Mouse::getPosition(*win);
-		Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
 		for (int i = 0; i < 16; i++)
 		{
 			if (PiecesP1[i]->GetTargeted() == true)
@@ -85,7 +75,8 @@ void PlayTurn::show(Piece* PiecesP1, Piece* PiecesP2)
 
 bool PlayTurn::checkMove(Piece* PiecesP2[], Piece* PiecesP1[], Vector2f newPos, Vector2f prevPos, Piece* targetedPiece)
 {
-
+	int x = (int)(newPos.x / 80);
+	int y = (int)(newPos.y / 80);
 	if (newPos.x < 641 && newPos.y < 651)//check so that the piece cant move outside the board
 	{
 		int kind = targetedPiece->getKind();
@@ -98,8 +89,7 @@ bool PlayTurn::checkMove(Piece* PiecesP2[], Piece* PiecesP1[], Vector2f newPos, 
 				if (newPos == PiecesP1[i]->GetPosition())
 				return false;
 			}
-			int x = (int)(newPos.x / 80);
-			int y = (int)(newPos.y / 80);
+
 			if ((abs((int)Position.x - x * 80) == 80 && abs((int)Position.y - y * 80) == 80) || (abs((int)Position.x - x * 80) == 80 && abs((int)Position.y - y * 80) == 0) || (abs((int)Position.x - x * 80) == 0 && abs((int)Position.y - y * 80) == 80))//checks if move is valid
 			{
 				Position.x = (float)(x * 80);
@@ -112,13 +102,11 @@ bool PlayTurn::checkMove(Piece* PiecesP2[], Piece* PiecesP1[], Vector2f newPos, 
 				if (newPos == PiecesP1[i]->GetPosition())//äckkligt mycket kod
 					return false;
 			}
-			int x = (int)(newPos.x / 80);
-			int y = (int)(newPos.y / 80);
+
 			if (abs((int)Position.x - x * 80) == abs((int)Position.y - y * 80) || abs((int)Position.x - x * 80) != 0 && abs((int)Position.y - y * 80) == 0 || abs((int)Position.x - x * 80) == 0 && abs((int)Position.y - y * 80) != 0)//makes sure the new position is valid
 			{
 				Position.x = (float)(x * 80);
-				Position.y = (float)(y * 80);
-				sprite.setPosition(Position);//set Sprite pos
+				Position.y = (float)(y * 80);				
 			}
 		}
 

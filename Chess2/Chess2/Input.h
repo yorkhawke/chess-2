@@ -2,9 +2,10 @@
 #define INPUT_H_
 
 // Includes
+#include <SFML/Graphics.hpp>
 #include <iostream>
-#include "Match.h"
-
+#include <stdio.h>
+using namespace sf;
 class Input
 {
 private:

@@ -2,6 +2,7 @@
 #define MATCHGRAPHICCOMPONENT_H
 
 #include "Graphics.h"
+#include "Square.h"
 
 class MatchGraphicComponent : public Graphic
 {

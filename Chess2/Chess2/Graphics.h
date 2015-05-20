@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <stdio.h>
-
+using namespace sf;
 class Graphic
 {
 protected:
