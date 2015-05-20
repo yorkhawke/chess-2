@@ -7,7 +7,7 @@ class PlayTurn
 {
 private:
 	Input inp;
-	static bool targeted;
+	bool targeted;
 	Vector2f PreviousPosition;
 public:
 	PlayTurn();

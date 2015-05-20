@@ -23,6 +23,7 @@ int main()
 		Event event;
 		Mouse mousePos;
 		window.clear();
+
 		meny->Render(&window);
 		while (window.pollEvent(event))
 		{

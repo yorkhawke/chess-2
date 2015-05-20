@@ -78,7 +78,7 @@ void  MatchGraphicComponent::Render(RenderWindow* win)
 
 FloatRect MatchGraphicComponent::GetGlobalRec(int nr)
 {
-	if and shit
+	return FloatRect(0, 0, 0, 0);
 }
 Sprite MatchGraphicComponent::GetSprite(int nr)
 {

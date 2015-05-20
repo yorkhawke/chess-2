@@ -54,7 +54,11 @@ void  MenyGraphicComponent::Render(RenderWindow* window)
 FloatRect MenyGraphicComponent::GetGlobalRec(int nr)
 {
 	if (nr==1)
-	return CloseSprite.getGlobalBounds();
+		return CloseSprite.getGlobalBounds();
 	else
-	return PlaySprite.getGlobalBounds();
+		return PlaySprite.getGlobalBounds();
+}
+Sprite MenyGraphicComponent::GetSprite(int i)
+{
+	return backSprite;
 }
