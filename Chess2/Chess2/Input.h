@@ -16,7 +16,7 @@ public:
 	Input();
 	~Input();
 	int InputMove(RenderWindow* win,bool targeted);
-	int InputMouse();
+	bool inputEsc(RenderWindow* win);
 	//Get/Set functions
 };
 #endif

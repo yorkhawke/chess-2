@@ -7,7 +7,7 @@
 class MatchGraphicComponent : public Graphic
 {
 private:
-	Sprite Sp1, Sp2;
+	Sprite Sp;
 	Sprite sprite;
 	Texture tex;
 	Font font;
@@ -18,8 +18,8 @@ public:
 	~MatchGraphicComponent();
 	void Draw();
 	void Render(RenderWindow* window);
-	FloatRect GetGlobalRec(int);
-	Sprite GetSprite(int);
+	void Render(RenderWindow* window, Piece* p1[], Piece* p2[]);
+	Sprite GetSprite();
 };
 
 #endif

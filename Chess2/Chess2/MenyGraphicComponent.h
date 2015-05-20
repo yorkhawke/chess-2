@@ -1,6 +1,5 @@
 #ifndef MENYGRAPHICCOMPONENT_H
 #define MENYGRAPHICCOMPONENT_H
-
 #include "Graphics.h"
 
 class MenyGraphicComponent : public Graphic

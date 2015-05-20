@@ -4,7 +4,10 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <stdio.h>
+#include "Piece.h"
+
 using namespace sf;
+
 class Graphic
 {
 protected:
@@ -16,8 +19,6 @@ public:
 	virtual ~Graphic();
 	virtual void Draw() = 0;
 	virtual void Render(RenderWindow* window) = 0;
-	virtual FloatRect GetGlobalRec(int) = 0;
-	virtual Sprite GetSprite(int) = 0;
 };
 
 #endif

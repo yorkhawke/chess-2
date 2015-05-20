@@ -12,9 +12,8 @@ Match::~Match()
 
 void Match::PlayMatch(RenderWindow* win)
 {
-	Graphic* mGrap;
-
-	mGrap = new MatchGraphicComponent(SCRWIDTH, SCRWIDTH);
+	Input in;
+	MatchGraphicComponent* mGrap = new MatchGraphicComponent(SCRWIDTH, SCRWIDTH);
 	
 	bool endOfGame=false;
 
@@ -22,96 +21,104 @@ void Match::PlayMatch(RenderWindow* win)
 	mGrap->Draw();
 
 	//Creating players
-	//Player p1(1, 0, "Player 1", false);
-	//Player p2(2, 0, "Player 2", false);
+	Player p1(1, 0, "Player 1", false);
+	Player p2(2, 0, "Player 2", false);
 
-	//p1.ResetPieces(true);
-	//p2.ResetPieces(false);
+	Piece* piecesPlayer1[16];
 
+	Piece* piecesPlayer2[16];
+
+	//pieces
+	piecesPlayer1[0] = new Pawn(Vector2f(0, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer1[1] = new Pawn(Vector2f(80, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer1[2] = new Pawn(Vector2f(160, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer1[3] = new Pawn(Vector2f(240, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer1[4] = new Pawn(Vector2f(320, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer1[5] = new Pawn(Vector2f(400, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer1[6] = new Pawn(Vector2f(480, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer1[7] = new Pawn(Vector2f(560, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer1[8] = new Rook(Vector2f(0, 560), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer1[9] = new Knight(Vector2f(80, 560), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer1[10] = new Bishop(Vector2f(400, 560), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer1[11] = new Queen(Vector2f(320, 560), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer1[12] = new King(Vector2f(240, 560), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer1[13] = new Bishop(Vector2f(160, 560), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer1[14] = new Knight(Vector2f(480, 560), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer1[15] = new Rook(Vector2f(560, 560), true, mGrap->GetSprite(), Color::White);
+	//Player 2
+	piecesPlayer2[0] = new Pawn(Vector2f(0, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer2[1] = new Pawn(Vector2f(80, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer2[2] = new Pawn(Vector2f(160, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer2[3] = new Pawn(Vector2f(240, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer2[4] = new Pawn(Vector2f(320, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer2[5] = new Pawn(Vector2f(400, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer2[6] = new Pawn(Vector2f(480, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer2[7] = new Pawn(Vector2f(560, 480), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer2[8] = new Rook(Vector2f(0, 560), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer2[9] = new Knight(Vector2f(80, 560), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer2[10] = new Bishop(Vector2f(400, 560), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer2[11] = new Queen(Vector2f(320, 560), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer2[12] = new King(Vector2f(240, 560), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer2[13] = new Bishop(Vector2f(160, 560), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer2[14] = new Knight(Vector2f(480, 560), true, mGrap->GetSprite(), Color::White);
+	piecesPlayer2[15] = new Rook(Vector2f(560, 560), true, mGrap->GetSprite(), Color::White);
+
+	InitPieces(piecesPlayer1,true);
+	InitPieces(piecesPlayer2, false);
+	mGrap->Draw();
 	Event ev;
-	bool turn=true;
-	bool keft = false;
-	Vector2f PreviousPos;
 	//Starting the match loop, in Tournament class we could have a attribute that makes this loop 3 times and then decide the winner... it felt unneccesary atm.
 	while (win->isOpen())
 	{
 		while (win->pollEvent(ev))
 		{
+			if (in.inputEsc(win))
+				win->close();
 
-
-
-			/*
-			if ((ev.type == Event::Closed) || ((ev.type == Event::KeyPressed) && ev.key.code == Keyboard::Escape))
-			win->close();
-			//Rendering the pieces and the board
 			win->clear();
-			// move pieces rendering here....
-			p1.RenderPieces(win);
-			p2.RenderPieces(win);
+			mGrap->Render(win, piecesPlayer1, piecesPlayer2);
 			win->display();
-			//gives player1 the first turn becuase player one is by default the white player.
-			if (turn)
-			{
-			keft = p1.PlayTurn(win, keft);
-			if (keft)
-			{
-			turn = false;
-			keft = false;
-			p1.ResetCol();
-			PreviousPos = p1.GetPreviousPosition();
-			p2.CheckTakenOut(PreviousPos);
-			//When Player2 king has died enters here and shows the ending screen. Likewise for player1...
-			if (p2.KingIsDead())
-			{
-			while (!endOfGame)
-			{
-			winText.setString("Player 1 Wins\n Press Y to quit");
-			win->clear();
-			win->draw(winText);
-			win->display();
-			if (Keyboard::isKeyPressed(Keyboard::Y))
-			win->close();
 
-
-			}
-			}
-			}
-			}
-			else
-			{
-			keft=p2.PlayTurn(win,keft);
-			if (keft)
-			{
-			turn = true;
-			keft = false;
-			p2.ResetCol();
-			PreviousPos = p2.GetPreviousPosition();
-			p1.CheckTakenOut(PreviousPos);
-			if (p1.KingIsDead())
-			{
-			while (endOfGame==false)
-			{
-
-			winText.setString("Player 2 Wins/n Press Y to quit");
-			win->clear();
-			win->draw(winText);
-			win->display();
-			if (Keyboard::isKeyPressed(Keyboard::Y))
-			win->close();
-
-
-			}
-
-			}
-			}
-			}
-
-			}
-			*/
+			//Playturn
 
 		}
 	}
 
+}
+
+void Match::InitPieces(Piece* pieces[],bool col)
+{
+	Vector2f pos;
+	if (col)
+	{
+		pos = Vector2f(0, 480);
+		for (int i = 0; i < 16; i++)//If col is true the player is white else it is black.
+		{
+			pieces[i]->SetPosition(pos);
+			pieces[i]->SetColour(Color::White);
+			pos.x += 80;
+			if (pos.x>560)
+			{
+				pos.y += 80;
+				pos.x = 0;
+			}
+		}
+	}
+	else
+	{
+		pos = Vector2f(0, 80);
+		for (int i = 0; i < 16; i++)
+		{
+			pieces[i]->SetPosition(pos);
+			pieces[i]->SetColour(Color::Black);
+			pos.x += 80;
+			if (pos.x >560)
+			{
+				pos.y -= 80;
+				pos.x = 0;
+			}
+		}
+	}
 }
 
 
