@@ -1,16 +1,23 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
-#include <SFML\Graphics.hpp>
-#include "Match.h"
+
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include <stdio.h>
 
 class Graphic
 {
-private:
-
+protected:
+	int SCRWIDTH;
+	int SCRHEIGHT;
 public:
 	Graphic();
-	~Graphic();
-	virtual void Draw(Match& match)=0;//Eller vad vi nu behöver ha?!
+	Graphic(int,int);
+	virtual ~Graphic();
+	virtual void Draw() = 0;
+	virtual void Render(RenderWindow* window) = 0;
+	virtual FloatRect GetGlobalRec(int) = 0;
+	virtual Sprite GetSprite(int) = 0;
 };
 
 #endif

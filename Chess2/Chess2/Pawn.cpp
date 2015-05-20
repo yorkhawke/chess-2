@@ -15,6 +15,7 @@ Pawn::Pawn(Vector2f pos, bool s, Sprite sp, Color c) :Piece(pos,s,sp,c)
 {
 	sprite.setTextureRect(IntRect(405, 0, 75, 80));//sets the rectangle of the texture from which the sprite gets the texture for the piece
 	firstmove = true;//variable used to check if its the piece first move, pawns can move 2 steps forward the first time they move each game
+	kind = 5;
 }
 
 Vector2f Pawn::Move(Vector2f pos)

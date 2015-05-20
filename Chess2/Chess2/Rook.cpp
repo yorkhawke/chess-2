@@ -14,6 +14,7 @@ Rook::Rook()
 Rook::Rook(Vector2f pos, bool s, Sprite sp, Color c) :Piece(pos, s, sp, c)
 {
 	sprite.setTextureRect(IntRect(0, 0, 75, 80));//sets the rectangle of the texture from which the sprite gets the texture for the piece
+	kind = 4;
 }
 Vector2f Rook::Move(Vector2f pos)
 {

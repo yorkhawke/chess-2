@@ -14,6 +14,7 @@ Queen::Queen()
 Queen::Queen(Vector2f pos, bool s, Sprite sp, Color c) :Piece(pos, s, sp, c)
 {
 	sprite.setTextureRect(IntRect(245, 0, 75, 80));//sets the rectangle of the texture from which the sprite gets the texture for the piece
+	kind = 2;
 }
 
 Vector2f Queen::Move(Vector2f pos)

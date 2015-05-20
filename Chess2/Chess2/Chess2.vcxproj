@@ -88,9 +88,11 @@
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="Match.cpp" />
     <ClCompile Include="MatchGraphicComponent.cpp" />
+    <ClCompile Include="MenyGraphicComponent.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayTurn.cpp" />
     <ClCompile Include="Queen.cpp" />
     <ClCompile Include="Rook.cpp" />
     <ClCompile Include="Square.cpp" />
@@ -104,10 +106,12 @@
     <ClInclude Include="Knight.h" />
     <ClInclude Include="Match.h" />
     <ClInclude Include="MatchGraphicComponent.h" />
+    <ClInclude Include="MenyGraphicComponent.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="PieceHeader.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayTurn.h" />
     <ClInclude Include="Queen.h" />
     <ClInclude Include="Rook.h" />
     <ClInclude Include="Square.h" />
