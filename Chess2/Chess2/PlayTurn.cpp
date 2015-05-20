@@ -90,11 +90,6 @@ bool PlayTurn::checkMove(Piece* PiecesP2[], Piece* PiecesP1[], Vector2f newPos, 
 				return false;
 			}
 
-			if ((abs((int)Position.x - x * 80) == 80 && abs((int)Position.y - y * 80) == 80) || (abs((int)Position.x - x * 80) == 80 && abs((int)Position.y - y * 80) == 0) || (abs((int)Position.x - x * 80) == 0 && abs((int)Position.y - y * 80) == 80))//checks if move is valid
-			{
-				Position.x = (float)(x * 80);
-				Position.y = (float)(y * 80);
-			}
 			break;
 		case 1:
 			for (int i = 0; i < 16; i++)
@@ -102,12 +97,15 @@ bool PlayTurn::checkMove(Piece* PiecesP2[], Piece* PiecesP1[], Vector2f newPos, 
 				if (newPos == PiecesP1[i]->GetPosition())//äckkligt mycket kod
 					return false;
 			}
-
-			if (abs((int)Position.x - x * 80) == abs((int)Position.y - y * 80) || abs((int)Position.x - x * 80) != 0 && abs((int)Position.y - y * 80) == 0 || abs((int)Position.x - x * 80) == 0 && abs((int)Position.y - y * 80) != 0)//makes sure the new position is valid
+			//check move okey
+			for (int i = 0; i < 16; i++)
 			{
-				Position.x = (float)(x * 80);
-				Position.y = (float)(y * 80);				
+				//friendly
+				if (PiecesP1[i]->GetPosition()
+				
 			}
+			break;
+
 		}
 
 	}
