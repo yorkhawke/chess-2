@@ -72,3 +72,7 @@ void Piece::SetTargeted(bool o)//changes the Targeted variable in piece
 	}
 	Targeted = o;
 }
+int Piece::getKind()
+{
+	return kind;
+}

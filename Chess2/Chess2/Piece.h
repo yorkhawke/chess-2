@@ -13,6 +13,7 @@ protected:
 	Color Colour;
 	bool Targeted;
 	Piece();
+	int kind;
 public:
 
 	Piece(Vector2f, bool, Sprite, Color);
@@ -28,6 +29,7 @@ public:
 	virtual Vector2f Move(Vector2f)=0;
 	bool GetTargeted();
 	void SetTargeted(bool);
+	int getKind();
 };
 
 #endif

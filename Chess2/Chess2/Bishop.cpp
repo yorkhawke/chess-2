@@ -14,6 +14,7 @@ Bishop::Bishop()
 Bishop::Bishop(Vector2f pos, bool s, Sprite sp, Color c) :Piece(pos, s, sp, c)
 {
 	sprite.setTextureRect(IntRect(85, 0, 75, 80));//sets the rectangle from which the sprite will get the texture for the specified piece
+	kind = 2;
 }
 
 Vector2f Bishop::Move(Vector2f pos)//used to move the piece

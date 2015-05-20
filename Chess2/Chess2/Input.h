@@ -3,7 +3,7 @@
 
 // Includes
 #include <iostream>
-
+#include "Match.h"
 
 class Input
 {
@@ -14,6 +14,8 @@ public:
 	//Functions
 	Input();
 	~Input();
+	int InputMove(RenderWindow* win,bool targeted);
+	int InputMouse();
 	//Get/Set functions
 };
 #endif

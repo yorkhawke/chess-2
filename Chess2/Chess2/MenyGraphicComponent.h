@@ -14,6 +14,7 @@ public:
 	void Draw();
 	void Render(RenderWindow* window);
 	FloatRect GetGlobalRec(int);
+	Sprite GetSprite(int);
 };
 
 #endif
