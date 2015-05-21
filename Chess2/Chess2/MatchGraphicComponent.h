@@ -13,6 +13,7 @@ private:
 	Font font;
 	Text winText;
 	Square Board[64];
+	bool gameOver = false;
 public:
 	MatchGraphicComponent(int width, int height);
 	~MatchGraphicComponent();
@@ -20,6 +21,7 @@ public:
 	void Render(RenderWindow* window);
 	void Render(RenderWindow* window, Piece* p1[], Piece* p2[]);
 	Sprite GetSprite();
+	void SetWinner(int);
 };
 
 #endif
