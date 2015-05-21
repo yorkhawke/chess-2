@@ -15,7 +15,7 @@ bool PlayTurn::Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win)
 	Vector2f previouspos;
 	Vector2i mousePosition = sf::Mouse::getPosition(*win);
 	Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
-
+	bool ret = false;
 	int x = (int)mousePositionFloat.x / 80;
 	int y = (int)mousePositionFloat.y / 80;
 
@@ -55,13 +55,15 @@ bool PlayTurn::Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win)
 				{
 					PiecesP1[i]->SetPosition(mousePositionFloat);
 					targeted = false;
-					return true;		
+					ret = true;
+
+					PiecesP1[i]->SetTargeted(false);
 				}
 			}
 		}
 		break;
 	}
-	return false;
+	return ret;
 
 }
 
