@@ -147,6 +147,35 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 #pragma region check rooks move
 		if (targetedPiece->Move(newPos))
 		{
+			for (int i = 0; i < 16; i++)
+			{
+				if (PiecesMovingPlayer[i]->GetPosition() == newPosRecalc)
+					return false;
+				if ((newPosRecalc.x == targetedPiece->GetPosition().x)&& PiecesMovingPlayer[i]->GetPosition().x==newPosRecalc.x)
+				{
+					if (abs(PiecesMovingPlayer[i]->GetPosition().y - newPosRecalc.y) < abs(targetedPiece->GetPosition().y - newPosRecalc.y))
+						return false;
+				}
+				if (newPosRecalc.y == targetedPiece->GetPosition().y && PiecesMovingPlayer[i]->GetPosition().y == newPosRecalc.y)
+				{
+					if (abs(PiecesMovingPlayer[i]->GetPosition().x - newPosRecalc.x) < abs(targetedPiece->GetPosition().x - newPosRecalc.x))
+						return false;
+				}
+			}
+			for (int i = 0; i < 16; i++)
+			{
+				if (newPosRecalc.x == targetedPiece->GetPosition().x && PiecesWaitingPlayer[i]->GetPosition().x == newPosRecalc.x)
+				{
+					if (abs(PiecesWaitingPlayer[i]->GetPosition().y - newPosRecalc.y) < abs(targetedPiece->GetPosition().y - newPosRecalc.y))
+						return false;
+				}
+				if (newPosRecalc.y == targetedPiece->GetPosition().y&&newPosRecalc.y == PiecesWaitingPlayer[i]->GetPosition().y)
+				{
+					if (abs(PiecesWaitingPlayer[i]->GetPosition().x - newPosRecalc.x) < abs(targetedPiece->GetPosition().x - newPosRecalc.x))
+						return false;
+				}
+			}
+			return true;
 		}
 		else
 			return false;
@@ -160,6 +189,8 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 			{
 				if (PiecesMovingPlayer[i]->GetPosition() == newPosRecalc)
 					return false;
+				if (PiecesMovingPlayer[i]->GetPosition().x == targetedPiece->GetPosition().x&& abs(PiecesMovingPlayer[i]->GetPosition().y - newPosRecalc.y) < abs(targetedPiece->GetPosition().y - newPosRecalc.y))
+					return false;	
 			}
 			for (int i = 0; i < 16; i++)
 			{
