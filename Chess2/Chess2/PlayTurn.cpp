@@ -77,6 +77,10 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 {
 	int kind = targetedPiece->getKind();
 	Vector2f Position = targetedPiece->GetPosition();
+	Vector2f newPosRecalc;
+	int x = newPos.x / 80;
+	int y = newPos.y / 80;
+	newPosRecalc = Vector2f(x * 80, y * 80);
 	switch (kind)
 	{
 	case 0://king 
@@ -85,7 +89,7 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 		{
 			for (int i = 0; i < 16; i++)
 			{
-				if (newPos == PiecesMovingPlayer[i]->GetPosition())
+				if (newPosRecalc == PiecesMovingPlayer[i]->GetPosition())
 					return false;
 			}
 			return true;
@@ -100,7 +104,7 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 		{
 			for (int i = 0; i < 16; i++)
 			{
-				if (newPos == PiecesMovingPlayer[i]->GetPosition())
+				if (newPosRecalc == PiecesMovingPlayer[i]->GetPosition())
 					return false;
 			}
 			for (int i = 0; i < 16; i++)
@@ -118,7 +122,7 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 		{
 			for (int i = 0; i < 16; i++)
 			{
-				if (PiecesMovingPlayer[i]->GetPosition() == newPos)
+				if (PiecesMovingPlayer[i]->GetPosition() == newPosRecalc)
 					return false;
 
 			}
@@ -133,7 +137,7 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 		{
 			for (int i = 0; i < 16; i++)
 			{
-				if (PiecesMovingPlayer[i]->GetPosition() == newPos)
+				if (PiecesMovingPlayer[i]->GetPosition() == newPosRecalc)
 					return false;
 			}
 			return true;
@@ -146,47 +150,6 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 #pragma region check rooks move
 		if (targetedPiece->Move(newPos))
 		{
-			int x = (int)newPos.x / 80;
-			int y = (int)newPos.y / 80;
-			for (int i = 0; i < 16; i++)
-			{
-				if (PiecesMovingPlayer[i]->GetPosition() == newPos)
-					return false;
-				if (x * 80 == targetedPiece->GetPosition().x)
-				{
-					if (abs(PiecesMovingPlayer[i]->GetPosition().y - targetedPiece->GetPosition().y) < abs(y * 80 - targetedPiece->GetPosition().y))
-					{
-						return false;
-					}
-				}
-				if (y * 80 == targetedPiece->GetPosition().y)
-				{
-					if (abs(PiecesMovingPlayer[i]->GetPosition().x - targetedPiece->GetPosition().x) < abs(x * 80 - targetedPiece->GetPosition().x))
-					{
-						return false;
-					}
-				}
-
-			}
-
-			for (int i = 0; i < 16; i++)
-			{
-				if (targetedPiece->GetPosition().x == x * 80)
-				{
-					if (abs(PiecesWaitingPlayer[i]->GetPosition().y - targetedPiece->GetPosition().y) < abs(y * 80 - targetedPiece->GetPosition().y))
-					{
-						return false;
-					}
-				}
-				if (targetedPiece->GetPosition().y == y * 80)
-				{
-					if (abs(PiecesWaitingPlayer[i]->GetPosition().x - targetedPiece->GetPosition().x) < abs(x * 80 - targetedPiece->GetPosition().x))
-					{
-						return false;
-					}
-				}
-			}
-			return true;
 		}
 		else
 			return false;
@@ -198,12 +161,12 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 		{
 			for (int i = 0; i < 16; i++)
 			{
-				if (PiecesMovingPlayer[i]->GetPosition() == newPos)
+				if (PiecesMovingPlayer[i]->GetPosition() == newPosRecalc)
 					return false;
 			}
 			for (int i = 0; i < 16; i++)
 			{
-				if (PiecesWaitingPlayer[i]->GetPosition() == newPos)
+				if (PiecesWaitingPlayer[i]->GetPosition() == newPosRecalc)
 				{
 					int x = (int)newPos.x / 80;
 					if (x * 80 > targetedPiece->GetPosition().x || x * 80 < targetedPiece->GetPosition().x)
