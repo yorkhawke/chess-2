@@ -117,6 +117,7 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 			{
 				if (PiecesMovingPlayer[i]->GetPosition() == newPos)
 					return false;
+
 			}
 		}
 		else
