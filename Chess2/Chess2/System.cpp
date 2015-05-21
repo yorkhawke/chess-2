@@ -13,11 +13,12 @@ int main()
 {
 	Match aMatch;
 	RenderWindow window;
-	Graphic* meny;
-	meny = new MenyGraphicComponent(SCRWIDTH, SCRHEIGHT);
+
+	MenyGraphicComponent* meny = new MenyGraphicComponent(SCRWIDTH, SCRHEIGHT);
 	window.create(sf::VideoMode(SCRWIDTH, SCRHEIGHT), "Schack");
+
 	meny->Draw();
-	
+
 	while (window.isOpen())
 	{
 		//Drawing the meny

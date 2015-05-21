@@ -12,7 +12,6 @@ MatchGraphicComponent::~MatchGraphicComponent()
 
 void MatchGraphicComponent::Draw()
 {
-
 	if (!font.loadFromFile("OptimusPrinceps.ttf"))
 	{
 		return;
@@ -26,8 +25,7 @@ void MatchGraphicComponent::Draw()
 	winText.setOrigin(Tr.left + Tr.width / 2.0f, Tr.top + Tr.height / 2.0f);
 	winText.setPosition(Vector2f(300, 300));
 	winText.setFont(font);
-	Sp1.setTexture(tex);
-	Sp2.setTexture(tex);
+	Sp.setTexture(tex);
 
 	sprite.setTexture(tex);
 	sprite.setTextureRect(IntRect(480, 0, 80, 80));
@@ -68,27 +66,29 @@ void MatchGraphicComponent::Draw()
 	}
 }
 
-void  MatchGraphicComponent::Render(RenderWindow* win)
+void  MatchGraphicComponent::Render(RenderWindow* win,Piece* p1[],Piece* p2[])
 {
 	for (int i = 0; i < 64; i++)
 	{
 		win->draw(Board[i].GetTexture());
 	}
+
+	for (int i = 0; i < 16; i++)
+	{
+		if (p1[i]->GetState())
+			win->draw(p1[i]->GetTexture());
+		if (p2[i]->GetState())
+			win->draw(p2[i]->GetTexture());
+	}
 }
 
-FloatRect MatchGraphicComponent::GetGlobalRec(int nr)
+Sprite MatchGraphicComponent::GetSprite()
 {
-	return FloatRect(0, 0, 0, 0);
+		return Sp;
 }
-Sprite MatchGraphicComponent::GetSprite(int nr)
+
+void MatchGraphicComponent::Render(RenderWindow* window)
 {
-	if (nr == 1)
-	{
-		return Sp1;
-	}
-	if (nr == 2)
-	{
-		return Sp2;
-	}
+
 }
 

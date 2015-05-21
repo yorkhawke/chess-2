@@ -39,9 +39,7 @@ void MenyGraphicComponent::Draw()
 	backSprite.setPosition(SCRWIDTH / 2.0f, SCRHEIGHT / 2.0f);
 	PlaySprite.setPosition(SCRWIDTH / 2.0f, SCRHEIGHT / 2.0f);
 	CloseSprite.setPosition(SCRWIDTH / 2.0f, ((SCRHEIGHT / 2.0f) + 60.0f));
-
 	
-
 }
 
 void  MenyGraphicComponent::Render(RenderWindow* window)

@@ -9,6 +9,7 @@
 #include "Square.h"
 #include "Graphics.h"
 #include "MatchGraphicComponent.h"
+#include "PieceHeader.h"
 
 #define SCRWIDTH 800
 #define SCRHEIGHT 660
@@ -26,7 +27,7 @@ public:
 	Match();
 	~Match();
 	void PlayMatch(RenderWindow* win);
-
+	void InitPieces(Piece* pieces[], bool col);
 	//Get/Set functions
 };
 #endif
