@@ -14,7 +14,7 @@ public:
 	~PlayTurn();
 	void Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win);
 	void show(Piece* PiecesP1, Piece* PiecesP2);//kanske fixa?
-	bool checkMove(Piece* PiecesP2[], Piece* PiecesP1[], Vector2f newPos, Vector2f prevPos, Piece* targetedPiece);
+	bool checkMove(Piece* [], Piece* [], Vector2f, Piece*);
 };
 
 
