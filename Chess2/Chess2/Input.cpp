@@ -25,11 +25,11 @@ int Input::InputMove(RenderWindow* win,bool targeted)
 
 }
 
-bool Input::inputEsc(RenderWindow* win)
+bool Input::inputEsc(Event ev)
 {
-	Event ev;
-	win->pollEvent(ev);
 	if ((ev.type == Event::Closed) || ((ev.type == Event::KeyPressed) && ev.key.code == Keyboard::Escape))
 		return true;
+
+	return false;
 }
 

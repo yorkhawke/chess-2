@@ -10,6 +10,7 @@
 #include "Graphics.h"
 #include "MatchGraphicComponent.h"
 #include "PieceHeader.h"
+#include "PlayTurn.h"
 
 #define SCRWIDTH 800
 #define SCRHEIGHT 660
