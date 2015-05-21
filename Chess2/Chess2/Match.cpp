@@ -83,17 +83,30 @@ void Match::PlayMatch(RenderWindow* win)
 			if (turn)
 			{
 				//CHECK IF KING IS ALIVE IF DEAD THEN END GAME.
-				if (pTurn.Turn(piecesPlayer1, piecesPlayer2,win))//fix so bool
+				if (!piecesPlayer2[12]->GetState())
 				{
-					turn = false;
+					mGrap->SetWinner(1);
+				}
+				else
+				{
+					if (pTurn.Turn(piecesPlayer1, piecesPlayer2, win))//fix so bool
+					{
+						turn = false;
+					}
 				}
 			}
 			else
 			{
-				//CHECK IF KING IS ALIVE IF DEAD THEN END GAME.
-				if (pTurn.Turn(piecesPlayer2, piecesPlayer1,win))
+				if (!piecesPlayer2[12]->GetState())
 				{
-					turn = true;
+					mGrap->SetWinner(2);
+				}
+				else
+				{
+					if (pTurn.Turn(piecesPlayer2, piecesPlayer1, win))
+					{
+						turn = true;
+					}
 				}
 			}
 			

@@ -68,17 +68,24 @@ void MatchGraphicComponent::Draw()
 
 void  MatchGraphicComponent::Render(RenderWindow* win,Piece* p1[],Piece* p2[])
 {
-	for (int i = 0; i < 64; i++)
+	if (!gameOver)
 	{
-		win->draw(Board[i].GetTexture());
-	}
+		for (int i = 0; i < 64; i++)
+		{
+			win->draw(Board[i].GetTexture());
+		}
 
-	for (int i = 0; i < 16; i++)
+		for (int i = 0; i < 16; i++)
+		{
+			if (p1[i]->GetState())
+				win->draw(p1[i]->GetTexture());
+			if (p2[i]->GetState())
+				win->draw(p2[i]->GetTexture());
+		}
+	}
+	else
 	{
-		if (p1[i]->GetState())
-			win->draw(p1[i]->GetTexture());
-		if (p2[i]->GetState())
-			win->draw(p2[i]->GetTexture());
+		win->draw(winText);
 	}
 }
 
@@ -91,4 +98,17 @@ void MatchGraphicComponent::Render(RenderWindow* window)
 {
 
 }
+
+void MatchGraphicComponent::SetWinner(int winner)
+{
+	if (winner == 1)
+		winText.setString("Player 1 \n IS THE \n WINNER");
+	else
+		winText.setString("Player 2 \n IS THE \n WINNER");
+	gameOver = true;
+}
+
+
+
+
 
