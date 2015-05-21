@@ -28,7 +28,11 @@ Vector2f Piece::GetPosition() //Gets the pieces position
 }
 void Piece::SetPosition(Vector2f pos)//Sets the position of the piece
 {
-	Position = pos;
+	int x = pos.x / 80;
+	int y = pos.y / 80;
+	pos.x = x * 80;
+	pos.y = y * 80;
+	Position =pos;
 	sprite.setPosition(pos);//changes the sprites position to make sure that the sprite is at the same position as the Piece::Position
 }
 bool Piece::GetState()//Gets the Piece::State which tells if the pieces should be drawn
