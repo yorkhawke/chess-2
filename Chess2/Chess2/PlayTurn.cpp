@@ -197,9 +197,9 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 		{
 			for (int i = 0; i < 16; i++)
 			{
-				if (PiecesMovingPlayer[i]->GetPosition() == newPosRecalc)
+				if (PiecesMovingPlayer[i]->GetPosition() == newPosRecalc&&PiecesMovingPlayer[i]->GetState())
 					return false;
-				if (PiecesMovingPlayer[i]->GetPosition().x == targetedPiece->GetPosition().x&& abs(PiecesMovingPlayer[i]->GetPosition().y - newPosRecalc.y) < abs(targetedPiece->GetPosition().y - newPosRecalc.y))
+				if (PiecesMovingPlayer[i]->GetPosition().x == targetedPiece->GetPosition().x&& abs(PiecesMovingPlayer[i]->GetPosition().y - newPosRecalc.y) < abs(targetedPiece->GetPosition().y - newPosRecalc.y)&&PiecesMovingPlayer[i]->GetState())
 					return false;
 			}
 			if (newPosRecalc.x != targetedPiece->GetPosition().x)
