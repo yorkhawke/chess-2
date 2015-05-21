@@ -51,13 +51,21 @@ bool PlayTurn::Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win)
 			if (PiecesP1[i]->GetTargeted() == true)
 			{
 				previouspos = PiecesP1[i]->GetPosition();
+
 				if (checkMove(PiecesP1, PiecesP2, mousePositionFloat, PiecesP1[i]))
 				{
 					PiecesP1[i]->SetPosition(mousePositionFloat);
 					targeted = false;
 					ret = true;
-
 					PiecesP1[i]->SetTargeted(false);
+
+					for (int j = 0; j < 16; j++)
+					{
+						if (PiecesP2[j]->GetPosition() == PiecesP1[i]->GetPosition())
+						{
+							PiecesP2[j]->SetState(false);
+						}
+					}
 				}
 			}
 		}
