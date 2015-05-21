@@ -17,6 +17,7 @@ int main()
 	meny = new MenyGraphicComponent(SCRWIDTH, SCRHEIGHT);
 	window.create(sf::VideoMode(SCRWIDTH, SCRHEIGHT), "Schack");
 	meny->Draw();
+	
 	while (window.isOpen())
 	{
 		//Drawing the meny
