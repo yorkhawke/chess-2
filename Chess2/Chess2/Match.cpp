@@ -83,7 +83,7 @@ void Match::PlayMatch(RenderWindow* win)
 			if (turn)
 			{
 				//CHECK IF KING IS ALIVE IF DEAD THEN END GAME.
-				if (pTurn.Turn(piecesPlayer1, piecesPlayer2))//fix so bool
+				if (pTurn.Turn(piecesPlayer1, piecesPlayer2,win))//fix so bool
 				{
 					turn = false;
 				}
@@ -91,7 +91,7 @@ void Match::PlayMatch(RenderWindow* win)
 			else
 			{
 				//CHECK IF KING IS ALIVE IF DEAD THEN END GAME.
-				if (pTurn.Turn(piecesPlayer2, piecesPlayer1))
+				if (pTurn.Turn(piecesPlayer2, piecesPlayer1,win))
 				{
 					turn = true;
 				}
