@@ -10,7 +10,7 @@ PlayTurn::~PlayTurn()
 
 }
 
-void PlayTurn::Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win)
+bool PlayTurn::Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win)
 {
 	Vector2f previouspos;
 	Vector2i mousePosition = sf::Mouse::getPosition(*win);
@@ -33,7 +33,7 @@ void PlayTurn::Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win)
 				}
 			}
 			break;
-	case 3://trimma 
+	case 3:
 		for (int i = 0; i < 16; i++)
 		{
 			previouspos = PiecesP1[i]->GetPosition();
@@ -51,20 +51,17 @@ void PlayTurn::Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win)
 			if (PiecesP1[i]->GetTargeted() == true)
 			{
 				previouspos = PiecesP1[i]->GetPosition();
-				/*
-				if (previouspos != PiecesP1[i]->Move(mousePositionFloat))
+				if (checkMove(PiecesP1, PiecesP2, mousePositionFloat, PiecesP1[i]))
 				{
-					PreviousPosition = PiecesP1[i]->GetPosition();
-					break;
+					PiecesP1[i]->SetPosition(mousePositionFloat);
+					targeted = false;
+					return true;		
 				}
-				*/
-				
-				PiecesP1[i]->Move(mousePositionFloat);
-				
 			}
 		}
 		break;
 	}
+	return false;
 
 }
 

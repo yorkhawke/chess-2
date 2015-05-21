@@ -12,7 +12,7 @@ private:
 public:
 	PlayTurn();
 	~PlayTurn();
-	void Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win);
+	bool Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win);
 	void show(Piece* PiecesP1, Piece* PiecesP2);//kanske fixa?
 	bool checkMove(Piece* [], Piece* [], Vector2f, Piece*);
 };
