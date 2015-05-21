@@ -30,6 +30,7 @@ bool Pawn::Move(Vector2f pos)
 			{
 				if ((abs((int)Position.y - y * 80) <= 160) || (abs((int)Position.y - y * 80) <= 80))
 				{
+					firstmove = false;
 					return true;
 				}
 			}
