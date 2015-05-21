@@ -17,6 +17,10 @@ Pawn::Pawn(Vector2f pos, bool s, Sprite sp, Color c) :Piece(pos,s,sp,c)
 	firstmove = true;//variable used to check if its the piece first move, pawns can move 2 steps forward the first time they move each game
 	kind = 5;
 }
+void Pawn::SetFirstMove()
+{
+	firstmove = false;
+}
 
 bool Pawn::Move(Vector2f pos)
 {
@@ -30,7 +34,6 @@ bool Pawn::Move(Vector2f pos)
 			{
 				if ((abs((int)Position.y - y * 80) <= 160) || (abs((int)Position.y - y * 80) <= 80))
 				{
-					firstmove = false;
 					return true;
 				}
 			}

@@ -20,6 +20,7 @@ public:
 	virtual ~Piece();
 	Vector2f GetPosition();
 	void SetPosition(Vector2f);
+	virtual void SetFirstMove()=0;
 	bool GetState();
 	void SetState(bool);
 	Sprite GetTexture();

@@ -14,5 +14,6 @@ public:
 	~King();
 	bool Move(Vector2f);
 	bool GetIsChecked();
+	void SetFirstMove();
 };
 #endif

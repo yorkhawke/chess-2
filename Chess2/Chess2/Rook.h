@@ -13,6 +13,6 @@ public:
 	Rook(Vector2f, bool, Sprite, Color);
 	~Rook();
 	bool Move(Vector2f);
-
+	void SetFirstMove();
 };
 #endif

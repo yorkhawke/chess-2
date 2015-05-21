@@ -11,6 +11,7 @@ public:
 	Bishop(Vector2f, bool, Sprite, Color);
 	~Bishop();
 	bool Move(Vector2f);
+	void SetFirstMove();
 };
 
 

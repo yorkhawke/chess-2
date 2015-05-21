@@ -11,6 +11,7 @@ public:
 	~Knight();
 	Knight(Vector2f, bool, Sprite, Color);
 	bool Move(Vector2f);
+	void SetFirstMove();
 };
 
 #endif

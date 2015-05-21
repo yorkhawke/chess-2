@@ -30,3 +30,7 @@ bool Queen::Move(Vector2f pos)
 	}
 	return  false;
 }
+void Queen::SetFirstMove()
+{
+
+}

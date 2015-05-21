@@ -36,3 +36,7 @@ bool King::Move(Vector2f pos)
 	}
 	return  false;
 }
+void King::SetFirstMove()
+{
+
+}

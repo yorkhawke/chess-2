@@ -30,3 +30,7 @@ bool Bishop::Move(Vector2f pos)//used to move the piece
 	}
 	return  false;
 }
+void Bishop::SetFirstMove()
+{
+
+}

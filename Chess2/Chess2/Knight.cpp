@@ -30,3 +30,7 @@ bool Knight::Move(Vector2f pos)
 	}
 	return  false;
 }
+void Knight::SetFirstMove()
+{
+
+}
