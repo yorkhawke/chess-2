@@ -73,43 +73,150 @@ void PlayTurn::show(Piece* PiecesP1, Piece* PiecesP2)
 	//lasters
 }
 
-bool PlayTurn::checkMove(Piece* PiecesP2[], Piece* PiecesP1[], Vector2f newPos, Vector2f prevPos, Piece* targetedPiece)
+bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer[], Vector2f newPos, Piece* targetedPiece)
 {
-	int x = (int)(newPos.x / 80);
-	int y = (int)(newPos.y / 80);
-	if (newPos.x < 641 && newPos.y < 651)//check so that the piece cant move outside the board
+	int kind = targetedPiece->getKind();
+	Vector2f Position = targetedPiece->GetPosition();
+	switch (kind)
 	{
-		int kind = targetedPiece->getKind();
-		Vector2f Position = targetedPiece->GetPosition();
-		switch (kind)
+	case 0://king 
+#pragma region check kings move
+		if (targetedPiece->Move(newPos))
 		{
-		case 0://king 
 			for (int i = 0; i < 16; i++)
 			{
-				if (newPos == PiecesP1[i]->GetPosition())
-				return false;
-			}
-
-			if ((abs((int)Position.x - x * 80) == 80 && abs((int)Position.y - y * 80) == 80) || (abs((int)Position.x - x * 80) == 80 && abs((int)Position.y - y * 80) == 0) || (abs((int)Position.x - x * 80) == 0 && abs((int)Position.y - y * 80) == 80))//checks if move is valid
-			{
-				Position.x = (float)(x * 80);
-				Position.y = (float)(y * 80);
-			}
-			break;
-		case 1:
-			for (int i = 0; i < 16; i++)
-			{
-				if (newPos == PiecesP1[i]->GetPosition())//äckkligt mycket kod
+				if (newPos == PiecesMovingPlayer[i]->GetPosition())
 					return false;
 			}
-
-			if (abs((int)Position.x - x * 80) == abs((int)Position.y - y * 80) || abs((int)Position.x - x * 80) != 0 && abs((int)Position.y - y * 80) == 0 || abs((int)Position.x - x * 80) == 0 && abs((int)Position.y - y * 80) != 0)//makes sure the new position is valid
+			return true;
+		}
+		else
+			return false;
+#pragma endregion
+		break;
+	case 1://queen
+#pragma region check queens move
+		if (targetedPiece->Move(newPos))
+		{
+			for (int i = 0; i < 16; i++)
 			{
-				Position.x = (float)(x * 80);
-				Position.y = (float)(y * 80);				
+				if (newPos == PiecesMovingPlayer[i]->GetPosition())
+					return false;
+			}
+			for (int i = 0; i < 16; i++)
+			{
+
 			}
 		}
+		else
+			return false;
+#pragma endregion
+		break;
+	case 2://bishop
+#pragma region check bishops move
+		if (targetedPiece->Move(newPos))
+		{
+			for (int i = 0; i < 16; i++)
+			{
+				if (PiecesMovingPlayer[i]->GetPosition() == newPos)
+					return false;
+			}
+		}
+		else
+			return false;
+#pragma endregion
+		break;
+	case 3://knight
+#pragma region check knights move
+		if (targetedPiece->Move(newPos))
+		{
+			for (int i = 0; i < 16; i++)
+			{
+				if (PiecesMovingPlayer[i]->GetPosition() == newPos)
+					return false;
+			}
+			return true;
+		}
+		else
+			return false;
+#pragma endregion
+		break;
+	case 4://rook
+#pragma region check rooks move
+		if (targetedPiece->Move(newPos))
+		{
+			int x = (int)newPos.x / 80;
+			int y = (int)newPos.y / 80;
+			for (int i = 0; i < 16; i++)
+			{
+				if (PiecesMovingPlayer[i]->GetPosition() == newPos)
+					return false;
+				if (x * 80 == targetedPiece->GetPosition().x)
+				{
+					if (abs(PiecesMovingPlayer[i]->GetPosition().y - targetedPiece->GetPosition().y) < abs(y * 80 - targetedPiece->GetPosition().y))
+					{
+						return false;
+					}
+				}
+				if (y * 80 == targetedPiece->GetPosition().y)
+				{
+					if (abs(PiecesMovingPlayer[i]->GetPosition().x - targetedPiece->GetPosition().x) < abs(x * 80 - targetedPiece->GetPosition().x))
+					{
+						return false;
+					}
+				}
 
+			}
+
+			for (int i = 0; i < 16; i++)
+			{
+				if (targetedPiece->GetPosition().x == x * 80)
+				{
+					if (abs(PiecesWaitingPlayer[i]->GetPosition().y - targetedPiece->GetPosition().y) < abs(y * 80 - targetedPiece->GetPosition().y))
+					{
+						return false;
+					}
+				}
+				if (targetedPiece->GetPosition().y == y * 80)
+				{
+					if (abs(PiecesWaitingPlayer[i]->GetPosition().x - targetedPiece->GetPosition().x) < abs(x * 80 - targetedPiece->GetPosition().x))
+					{
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+		else
+			return false;
+#pragma endregion
+		break;
+	case 5://pawn
+#pragma region check pawns move
+		if (targetedPiece->Move(newPos))
+		{
+			for (int i = 0; i < 16; i++)
+			{
+				if (PiecesMovingPlayer[i]->GetPosition() == newPos)
+					return false;
+			}
+			for (int i = 0; i < 16; i++)
+			{
+				if (PiecesWaitingPlayer[i]->GetPosition() == newPos)
+				{
+					int x = (int)newPos.x / 80;
+					if (x * 80 > targetedPiece->GetPosition().x || x * 80 < targetedPiece->GetPosition().x)
+						return true;
+					else
+						return false;
+				}
+				else
+					return true;
+			}
+		}
+		else
+			return false;
+#pragma endregion
+		break;
 	}
-
 }
