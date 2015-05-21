@@ -14,9 +14,9 @@ void Match::PlayMatch(RenderWindow* win)
 {
 	Input in;
 	MatchGraphicComponent* mGrap = new MatchGraphicComponent(SCRWIDTH, SCRWIDTH);
-	
+	PlayTurn pTurn;
 	bool endOfGame=false;
-
+	bool turn=true;
 	//Loading Texture and Font
 	mGrap->Draw();
 
@@ -72,14 +72,31 @@ void Match::PlayMatch(RenderWindow* win)
 	{
 		while (win->pollEvent(ev))
 		{
-			if (in.inputEsc(win))
+			if (in.inputEsc(ev))
 				win->close();
 
 			win->clear();
 			mGrap->Render(win, piecesPlayer1, piecesPlayer2);
 			win->display();
-
 			//Playturn
+
+			if (turn)
+			{
+				//CHECK IF KING IS ALIVE IF DEAD THEN END GAME.
+				if (pTurn.Turn(piecesPlayer1, piecesPlayer2))//fix so bool
+				{
+					turn = false;
+				}
+			}
+			else
+			{
+				//CHECK IF KING IS ALIVE IF DEAD THEN END GAME.
+				if (pTurn.Turn(piecesPlayer2, piecesPlayer1))
+				{
+					turn = true;
+				}
+			}
+			
 
 		}
 	}
