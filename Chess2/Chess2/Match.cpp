@@ -97,7 +97,7 @@ void Match::PlayMatch(RenderWindow* win)
 			}
 			else
 			{
-				if (!piecesPlayer2[12]->GetState())
+				if (!piecesPlayer1[12]->GetState())
 				{
 					mGrap->SetWinner(2);
 				}
