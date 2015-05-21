@@ -87,6 +87,10 @@ void Match::PlayMatch(RenderWindow* win)
 				{
 					mGrap->SetWinner(1);
 				}
+				else if (!piecesPlayer1[12]->GetState())
+				{
+					mGrap->SetWinner(2);
+				}
 				else
 				{
 					if (pTurn.Turn(piecesPlayer1, piecesPlayer2, win))//fix so bool
@@ -100,6 +104,10 @@ void Match::PlayMatch(RenderWindow* win)
 				if (!piecesPlayer1[12]->GetState())
 				{
 					mGrap->SetWinner(2);
+				}
+				else if (!piecesPlayer2[12]->GetState())
+				{
+					mGrap->SetWinner(1);
 				}
 				else
 				{

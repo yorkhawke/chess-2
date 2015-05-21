@@ -157,32 +157,100 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 #pragma region check rooks move
 		if (targetedPiece->Move(newPos))
 		{
-			for (int i = 0; i < 16; i++)
+			if (newPosRecalc.x == targetedPiece->GetPosition().x)
 			{
-				if (PiecesMovingPlayer[i]->GetPosition() == newPosRecalc&&PiecesMovingPlayer[i]->GetState())
-					return false;
-				if ((newPosRecalc.x == targetedPiece->GetPosition().x)&& PiecesMovingPlayer[i]->GetPosition().x==newPosRecalc.x&&PiecesMovingPlayer[i]->GetState())
+				//fixa y
+				Vector2f tempPos = newPosRecalc;
+				for (int i = 1; i < (newPosRecalc.y - targetedPiece->GetPosition().y) / 80; i++)
 				{
-					if (abs(PiecesMovingPlayer[i]->GetPosition().y - newPosRecalc.y) < abs(targetedPiece->GetPosition().y - newPosRecalc.y))
-						return false;
+					for (int j = 0; j < 16; j++)
+					{
+						if (PiecesWaitingPlayer[i]->GetPosition().y == newPosRecalc.y - (i * 80))
+						{
+							return false;
+						}
+					}
+					for (int j = 0; j < 16; j++)
+					{
+						if (PiecesMovingPlayer[i]->GetPosition().y == newPosRecalc.y - (i * 80))
+						{
+							return false;
+						}
+					}
 				}
-				if (newPosRecalc.y == targetedPiece->GetPosition().y && PiecesMovingPlayer[i]->GetPosition().y == newPosRecalc.y&&PiecesMovingPlayer[i]->GetState())
+				for (int i = 0; i < 16; i++)
 				{
-					if (abs(PiecesMovingPlayer[i]->GetPosition().x - newPosRecalc.x) < abs(targetedPiece->GetPosition().x - newPosRecalc.x))
-						return false;
+					if (PiecesMovingPlayer[i]->GetPosition().y == newPosRecalc.y);
+					return false;
+
+					if (PiecesWaitingPlayer[i]->GetPosition().y == newPosRecalc.y);
+					return true;
+
 				}
 			}
-			for (int i = 0; i < 16; i++)
+			else if (newPosRecalc.y == targetedPiece->GetPosition().y)
 			{
-				if (PiecesWaitingPlayer[i]->GetPosition().x == targetedPiece->GetPosition().x)
+				//fixa y
+				Vector2f tempPos = newPosRecalc;
+				for (int i = 1; i < newPosRecalc.x / 80; i++)
 				{
-					if (PiecesWaitingPlayer[i]->GetPosition().y > newPosRecalc.y&&PiecesWaitingPlayer[i]->GetColour() == Color::Black&&PiecesWaitingPlayer[i]->GetState())
-						return false;
-					if (PiecesWaitingPlayer[i]->GetPosition().y < newPosRecalc.y&&PiecesWaitingPlayer[i]->GetColour() == Color::White&&PiecesWaitingPlayer[i]->GetState())
-						return false;
+					for (int j = 0; j < 16; j++)
+					{
+						if (PiecesWaitingPlayer[i]->GetPosition().x == newPosRecalc.x - (i * 80))
+						{
+							return false;
+						}
+					}
+					for (int j = 0; j < 16; j++)
+					{
+						if (PiecesMovingPlayer[i]->GetPosition().x == newPosRecalc.x - (i * 80))
+						{
+							return false;
+						}
+					}
 				}
-			} 
-			return true;
+				for (int i = 0; i < 16; i++)
+				{
+					if (PiecesMovingPlayer[i]->GetPosition().x == newPosRecalc.x);
+					return false;
+
+					if (PiecesWaitingPlayer[i]->GetPosition().x == newPosRecalc.x);
+					return true;
+
+				}
+			}
+			else
+			{
+				return false;
+			}
+
+
+			//for (int i = 0; i < 16; i++)
+			//{
+			//	if (PiecesMovingPlayer[i]->GetPosition() == newPosRecalc&&PiecesMovingPlayer[i]->GetState())
+			//		return false;
+			//	if ((newPosRecalc.x == targetedPiece->GetPosition().x)&& PiecesMovingPlayer[i]->GetPosition().x==newPosRecalc.x&&PiecesMovingPlayer[i]->GetState())
+			//	{
+			//		if (abs(PiecesMovingPlayer[i]->GetPosition().y - newPosRecalc.y) < abs(targetedPiece->GetPosition().y - newPosRecalc.y))
+			//			return false;
+			//	}
+			//	if (newPosRecalc.y == targetedPiece->GetPosition().y && PiecesMovingPlayer[i]->GetPosition().y == newPosRecalc.y&&PiecesMovingPlayer[i]->GetState())
+			//	{
+			//		if (abs(PiecesMovingPlayer[i]->GetPosition().x - newPosRecalc.x) < abs(targetedPiece->GetPosition().x - newPosRecalc.x))
+			//			return false;
+			//	}
+			//}
+			//for (int i = 0; i < 16; i++)
+			//{
+			//	if (PiecesWaitingPlayer[i]->GetPosition().x == targetedPiece->GetPosition().x)
+			//	{
+			//		if (PiecesWaitingPlayer[i]->GetPosition().y > newPosRecalc.y&&PiecesWaitingPlayer[i]->GetColour() == Color::Black&&PiecesWaitingPlayer[i]->GetState())
+			//			return false;
+			//		if (PiecesWaitingPlayer[i]->GetPosition().y < newPosRecalc.y&&PiecesWaitingPlayer[i]->GetColour() == Color::White&&PiecesWaitingPlayer[i]->GetState())
+			//			return false;
+			//	}
+			//} 
+			//return true;
 		}
 		else
 			return false;
