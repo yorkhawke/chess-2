@@ -19,9 +19,9 @@ bool PlayTurn::Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win)
 	int x = (int)mousePositionFloat.x / 80;
 	int y = (int)mousePositionFloat.y / 80;
 
-	switch (inp.InputMove(win,targeted))
+	switch (inp.InputMove(win,targeted))//Check if input has been entered and acts accordingly 
 	{
-	case 1://TARGETING
+	case 1://if player Rightclicks to target a piece
 			for (int i = 0; i < 16; i++)
 			{
 				previouspos = PiecesP1[i]->GetPosition();
@@ -33,7 +33,7 @@ bool PlayTurn::Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win)
 				}
 			}
 			break;
-	case 3:
+	case 3://if player RightClicks while a piece is targeted, it will untarget that piece  
 		for (int i = 0; i < 16; i++)
 		{
 			previouspos = PiecesP1[i]->GetPosition();
@@ -45,14 +45,14 @@ bool PlayTurn::Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win)
 			}
 		}
 		break;
-	case 4:
+	case 4://when the player has targeted a piece and leftclicks to move the piece to the targeted position
 		for (int i = 0; i < 16; i++)
 		{
 			if (PiecesP1[i]->GetTargeted() == true)
 			{
 				previouspos = PiecesP1[i]->GetPosition();
 
-				if (checkMove(PiecesP1, PiecesP2, mousePositionFloat, PiecesP1[i]))
+				if (checkMove(PiecesP1, PiecesP2, mousePositionFloat, PiecesP1[i]))// Checks if the move is valid, if valid changes to the new position and untargets the piece and ret to true so Match will know a move has been done
 				{
 					PiecesP1[i]->SetPosition(mousePositionFloat);
 					targeted = false;
@@ -75,11 +75,6 @@ bool PlayTurn::Turn(Piece* PiecesP1[], Piece* PiecesP2[], RenderWindow* win)
 
 }
 
-void PlayTurn::show(Piece* PiecesP1, Piece* PiecesP2)
-{
-	//lasters
-}
-
 bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer[], Vector2f newPos, Piece* targetedPiece)
 {
 	int kind = targetedPiece->getKind();
@@ -91,7 +86,7 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 	switch (kind)
 	{
 	case 0://king 
-#pragma region check kings move
+#pragma region check kings move 
 		if (targetedPiece->Move(newPos))
 		{
 			for (int i = 0; i < 16; i++)
@@ -105,13 +100,13 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 			return false;
 #pragma endregion
 		break;
-	case 1://queen
+	case 1://queen not fully working. Lack of time
 #pragma region check queens move
 		if (targetedPiece->Move(newPos))
 		{
 			for (int i = 0; i < 16; i++)
 			{
-				if (newPosRecalc == PiecesMovingPlayer[i]->GetPosition()&&PiecesWaitingPlayer[i]->GetState())
+				if (newPosRecalc == PiecesMovingPlayer[i]->GetPosition() && PiecesWaitingPlayer[i]->GetState())
 					return false;
 			}
 			for (int i = 0; i < 16; i++)
@@ -123,7 +118,7 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 			return false;
 #pragma endregion
 		break;
-	case 2://bishop
+	case 2://bishop not fully working. Lack of time
 #pragma region check bishops move
 		if (targetedPiece->Move(newPos))
 		{
@@ -153,107 +148,21 @@ bool PlayTurn::checkMove(Piece* PiecesMovingPlayer[], Piece* PiecesWaitingPlayer
 			return false;
 #pragma endregion
 		break;
-	case 4://rook
+	case 4://rook  not fully working. Lack of time
 #pragma region check rooks move
 		if (targetedPiece->Move(newPos))
 		{
-			if (newPosRecalc.x == targetedPiece->GetPosition().x)
+			for (int i = 0; i < 16; i++)
 			{
-				//fixa y
-				Vector2f tempPos = newPosRecalc;
-				for (int i = 1; i < (newPosRecalc.y - targetedPiece->GetPosition().y) / 80; i++)
-				{
-					for (int j = 0; j < 16; j++)
-					{
-						if (PiecesWaitingPlayer[i]->GetPosition().y == newPosRecalc.y - (i * 80))
-						{
-							return false;
-						}
-					}
-					for (int j = 0; j < 16; j++)
-					{
-						if (PiecesMovingPlayer[i]->GetPosition().y == newPosRecalc.y - (i * 80))
-						{
-							return false;
-						}
-					}
-				}
-				for (int i = 0; i < 16; i++)
-				{
-					if (PiecesMovingPlayer[i]->GetPosition().y == newPosRecalc.y);
+				if (PiecesMovingPlayer[i]->GetPosition() == newPosRecalc&&PiecesMovingPlayer[i]->GetState())
 					return false;
-
-					if (PiecesWaitingPlayer[i]->GetPosition().y == newPosRecalc.y);
-					return true;
-
-				}
 			}
-			else if (newPosRecalc.y == targetedPiece->GetPosition().y)
-			{
-				//fixa y
-				Vector2f tempPos = newPosRecalc;
-				for (int i = 1; i < newPosRecalc.x / 80; i++)
-				{
-					for (int j = 0; j < 16; j++)
-					{
-						if (PiecesWaitingPlayer[i]->GetPosition().x == newPosRecalc.x - (i * 80))
-						{
-							return false;
-						}
-					}
-					for (int j = 0; j < 16; j++)
-					{
-						if (PiecesMovingPlayer[i]->GetPosition().x == newPosRecalc.x - (i * 80))
-						{
-							return false;
-						}
-					}
-				}
-				for (int i = 0; i < 16; i++)
-				{
-					if (PiecesMovingPlayer[i]->GetPosition().x == newPosRecalc.x);
-					return false;
-
-					if (PiecesWaitingPlayer[i]->GetPosition().x == newPosRecalc.x);
-					return true;
-
-				}
-			}
-			else
-			{
-				return false;
-			}
-
-
-			//for (int i = 0; i < 16; i++)
-			//{
-			//	if (PiecesMovingPlayer[i]->GetPosition() == newPosRecalc&&PiecesMovingPlayer[i]->GetState())
-			//		return false;
-			//	if ((newPosRecalc.x == targetedPiece->GetPosition().x)&& PiecesMovingPlayer[i]->GetPosition().x==newPosRecalc.x&&PiecesMovingPlayer[i]->GetState())
-			//	{
-			//		if (abs(PiecesMovingPlayer[i]->GetPosition().y - newPosRecalc.y) < abs(targetedPiece->GetPosition().y - newPosRecalc.y))
-			//			return false;
-			//	}
-			//	if (newPosRecalc.y == targetedPiece->GetPosition().y && PiecesMovingPlayer[i]->GetPosition().y == newPosRecalc.y&&PiecesMovingPlayer[i]->GetState())
-			//	{
-			//		if (abs(PiecesMovingPlayer[i]->GetPosition().x - newPosRecalc.x) < abs(targetedPiece->GetPosition().x - newPosRecalc.x))
-			//			return false;
-			//	}
-			//}
-			//for (int i = 0; i < 16; i++)
-			//{
-			//	if (PiecesWaitingPlayer[i]->GetPosition().x == targetedPiece->GetPosition().x)
-			//	{
-			//		if (PiecesWaitingPlayer[i]->GetPosition().y > newPosRecalc.y&&PiecesWaitingPlayer[i]->GetColour() == Color::Black&&PiecesWaitingPlayer[i]->GetState())
-			//			return false;
-			//		if (PiecesWaitingPlayer[i]->GetPosition().y < newPosRecalc.y&&PiecesWaitingPlayer[i]->GetColour() == Color::White&&PiecesWaitingPlayer[i]->GetState())
-			//			return false;
-			//	}
-			//} 
-			//return true;
+			return true;
 		}
 		else
+		{
 			return false;
+		}
 #pragma endregion
 		break;
 	case 5://pawn
